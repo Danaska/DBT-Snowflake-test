@@ -1,0 +1,94 @@
+version: 2
+
+models:
+  - name: fct_revenue
+    description: revenue fact table
+    columns:
+      - name: Dealer_ID
+        description: identifier for the dealer
+      - name: Model_ID
+        description: identifier for the model
+      - name: Branch_ID
+        description: identifier for the branch
+        tests:
+          - unique
+          - not_null
+      - name: Date_ID
+        description: identifier for the date
+      - name: Units_Sold
+        description: number of units sold for each model
+      - name: Revenue
+        description: primary column of the model
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_dealer')
+              field: Dealer_ID
+          - relationships:
+              to: ref('dim_branch')
+              field: BR_ID         
+          - relationships:
+              to: ref('dim_date')
+              field: Date_ID
+          - relationships:
+              to: ref('dim_product')
+              field: Model_ID
+  - name: dim_branch
+    description: dimension for branch
+    columns:
+      - name: BR_ID
+        description: identifier for the branch
+        tests:
+          - unique
+          - not_null
+      - name: BR_Name
+        description: Branch name
+  - name: dim_date
+    description: dimension for date
+    columns:
+      - name: Date_ID
+        description: identifier for the date
+        tests:
+          - unique
+          - not_null
+      - name: Date
+        description: date format column
+      - name: Year
+        description: year column
+      - name: Month
+        description: month column
+      - name: Quarter
+        description: quarter column
+  - name: dim_product
+    description: dimension for product
+    columns:
+      - name: Product_ID
+        description: identifier for the product
+      - name: Product_Name
+        description: name for product
+      - name: Model_ID
+        description: Identifier for the model
+        tests:
+          - unique
+          - not_null
+      - name: Model_Name
+        description: Model name
+  - name: dim_dealer
+    description: dimension for dealer
+    columns:
+      - name: Dealer_ID
+        description: dealer identifier #'{{% docs docs_dealer_ID %}}'
+        tests:
+          - unique
+          - not_null
+      - name: Dealer name
+        description: name for dealer
+      - name: Location_ID
+        description: Identifier for the location
+      - name: Location_NM
+        description: Location name
+      - name: CNT_ID
+        description: Identifier for country
+      - name: CNT_Name
+        description: Country name
+  
