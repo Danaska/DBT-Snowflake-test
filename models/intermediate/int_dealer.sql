@@ -11,9 +11,10 @@ country as (
 )
 select 
 
-    dealer.Dealer_ID,dealer.Dealer_Name, dealer.Location_ID, dealer.Location_Name, country.CNT_ID, dealer.CNT_Name
+    dealer.Dealer_ID,dealer.Dealer_Name, dealer.Location_ID, dealer.Location_Name, country.CNT_ID, country.CNT_Name
 
 from
-    dealers
-inner join country
+    dealer
+left join country
         on dealer.CNT_ID = country.CNT_ID
+order by Dealer_ID asc

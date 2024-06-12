@@ -36,7 +36,7 @@ sources:
       - name: rawproduct
         description: main table for date
         columns:
-          - name: Product_ID
+          - name: Model_ID
             description: Primary key
             tests:
               - unique

@@ -4,11 +4,11 @@ with source as (
 
 ),
 
-selected as (
+renamed as (
 
     select
 
-        Product_ID,
+        Product_ID as Product_Code,
         Product_Name,
         Model_ID,
         Model_Name
@@ -17,4 +17,4 @@ selected as (
 
 )
 
-select * from selected
+select * from renamed
