@@ -1,10 +1,35 @@
-Welcome to your new dbt project!
+## Demo for DBT project
+
+### What's included
+
+#### Model stages
+
+Three stages have been created for a proper transformation and aggregation of data:
+
++ Staging: first stage for the data.
++ Intermediate: some intermediate transformation.
++ Marts: final dimensions and fact table.
+
+The structure is defined in the `core.yml` file.
+
+![core-image](./images/core_image.png)
+
+#### Packages
+
+The `packages.yml` file has been configured.
+
+#### Custom test
+
+A custom test has been included in addition to the default one, in order to detect duplicate data.
+
+![test](./images/test.png)
 
 ### Using the starter project
 
 Try running the following commands:
 - dbt run
 - dbt test
+- dbt docs generate
 
 
 ### Resources:

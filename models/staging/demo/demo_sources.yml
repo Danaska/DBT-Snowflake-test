@@ -1,0 +1,80 @@
+version: 2
+sources:
+  - name: demo
+    description: source demo data
+    database: demo_07062024
+    schema: data
+    tables:
+      - name: rawbranch
+        description: main branch table
+        columns:
+          - name: Branch_ID
+            description: Primary key, contains the branchs identifier
+            tests: 
+              - unique
+              - not_null
+
+      - name: rawcountry
+        description: main lineitem table
+        columns:
+          - name: Country_ID
+            description: Foreign key to country table
+            tests:
+              - relationships:
+                  to: ref('country')
+                  field: Country_ID
+
+      - name: rawdate
+        description: main table for date
+        columns:
+          - name: Date_ID
+            description: Primary key
+            tests:
+              - unique
+              - not_null
+
+      - name: rawproduct
+        description: main table for date
+        columns:
+          - name: Model_ID
+            description: Primary key
+            tests:
+              - unique
+              - not_null
+
+      - name: rawdealer
+        description: main table for date
+        columns:
+          - name: Dealer_ID
+            description: Primary key
+            tests:
+              - unique
+              - not_null
+
+      - name: rawrevenue
+        description: fact table
+        columns:
+          - name: Dealer_ID
+            description: Foreign key to dealer table
+            tests:
+              - relationships:
+                  to: ref('dealer')
+                  field: Dealer_ID
+          - name: Model_ID
+            description: Foreign key to product table
+            tests:
+              - relationships:
+                  to: ref('product')
+                  field: Model_ID
+          - name: Date_ID
+            description: Foreign key to date table
+            tests:
+              - relationships:
+                  to: ref('date')
+                  field: Date_ID
+          - name: Branch_ID
+            description: Foreign key to branch table
+            tests:
+              - relationships:
+                  to: ref('branch')
+                  field: Branch_ID
